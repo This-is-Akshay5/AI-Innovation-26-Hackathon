@@ -8,8 +8,13 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const isPublic = PUBLIC_PATHS.some((p) => pathname.startsWith(p));
+  const isApi = pathname.startsWith("/api/");
 
-  if (!user && !isPublic) {
+  // API routes must never be answered with an HTML redirect — a fetch()
+  // caller expects the same structured { error: { code, message } } shape
+  // it gets for every other failure. Let the request through so the
+  // route's own requireUser() guard returns a proper 401 JSON body.
+  if (!user && !isPublic && !isApi) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     url.searchParams.set("next", pathname);
