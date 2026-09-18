@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f6f3;
+  --surface: #ffffff;
+  --foreground: #1c1c1a;
+  --muted: #6b6a66;
+  --border: #e3e1db;
+
+  --accent: #0f4c4c;
+  --accent-hover: #0b3a3a;
+  --accent-soft: #e6efee;
+
+  --success: #1f7a4d;
+  --success-soft: #e6f4ec;
+  --warning: #9a6b13;
+  --warning-soft: #fbf0dc;
+  --danger: #9b2c2c;
+  --danger-soft: #fbe9e9;
+
+  --focus-ring: #0f4c4c;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #14161a;
+    --surface: #1b1e23;
+    --foreground: #edece8;
+    --muted: #9b9a94;
+    --border: #2c2f35;
+    --accent: #4fb8ae;
+    --accent-hover: #6fcac1;
+    --accent-soft: #1c2a2a;
+    --success-soft: #12271c;
+    --warning-soft: #2a2113;
+    --danger-soft: #2b1717;
+  }
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+table {
+  font-variant-numeric: tabular-nums;
+}
