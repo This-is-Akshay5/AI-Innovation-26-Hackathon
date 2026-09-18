@@ -1,0 +1,320 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "permissionId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "patientRef",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "doctorRef",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "scopeHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "expiresAt",
+          "type": "uint256"
+        }
+      ],
+      "name": "AccessGranted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "permissionId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "patientRef",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "doctorRef",
+          "type": "bytes32"
+        }
+      ],
+      "name": "AccessRevoked",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "auditId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "actorRef",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "actionCode",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "resourceRef",
+          "type": "bytes32"
+        }
+      ],
+      "name": "AuditRecorded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "recordId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "patientRef",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "contentHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "RecordHashRegistered",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "permissionId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "patientRef",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "doctorRef",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "scopeHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "expiresAt",
+          "type": "uint256"
+        }
+      ],
+      "name": "grantAccess",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "permissionId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "isPermissionActive",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "permissions",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "patientRef",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "doctorRef",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "scopeHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "grantedAt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "expiresAt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "active",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "auditId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "actorRef",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "actionCode",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "resourceRef",
+          "type": "bytes32"
+        }
+      ],
+      "name": "recordAuditEvent",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "recordHashes",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "recordId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "patientRef",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "contentHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "registerRecordHash",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "permissionId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "revokeAccess",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x60a060405234801561000f575f80fd5b50336080526080516107c26100475f395f818160b6015281816101ea015281816103ba0152818161044501526105a501526107c25ff3fe608060405234801561000f575f80fd5b5060043610610085575f3560e01c8063b4d2388f11610058578063b4d2388f14610108578063e1377a751461017c578063e437385e146101a9578063f86e7abf146101bc575f80fd5b80633efc8c8b1461008957806367ce782f1461009e5780638da5cb5b146100b1578063b1263ada146100f5575b5f80fd5b61009c6100973660046106a1565b6101df565b005b61009c6100ac3660046106d8565b6103af565b6100d87f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b0390911681526020015b60405180910390f35b61009c610103366004610707565b61043a565b61014d610116366004610707565b5f60208190529081526040902080546001820154600283015460038401546004850154600590950154939492939192909160ff1686565b6040805196875260208701959095529385019290925260608401526080830152151560a082015260c0016100ec565b61019b61018a366004610707565b60016020525f908152604090205481565b6040519081526020016100ec565b61009c6101b736600461071e565b61059a565b6101cf6101ca366004610707565b610635565b60405190151581526020016100ec565b336001600160a01b037f000000000000000000000000000000000000000000000000000000000000000016146102305760405162461bcd60e51b815260040161022790610747565b60405180910390fd5b5f858152602081905260409020600301541561029f5760405162461bcd60e51b815260206004820152602860248201527f4d65646963616c4d656d6f727952656769737472793a207065726d697373696f6044820152676e2065786973747360c01b6064820152608401610227565b4281116102fc5760405162461bcd60e51b815260206004820152602560248201527f4d65646963616c4d656d6f727952656769737472793a2065787069727920696e604482015264081c185cdd60da1b6064820152608401610227565b6040805160c0810182528581526020808201868152828401868152426060850190815260808501878152600160a087018181525f8e81528088528990209751885594519087015591516002860155516003850155516004840155516005909201805460ff19169215159290921790915581518481529081018390528491869188917fe823f9abf45d4a885987299dfcde12552b2607217600f1bd027d414737101640910160405180910390a45050505050565b336001600160a01b037f000000000000000000000000000000000000000000000000000000000000000016146103f75760405162461bcd60e51b815260040161022790610747565b6040805183815260208101839052849186917f49a976295bc87203ff5e26984081f39fd60e4753c1eb96c1e5f568f17b714bf7910160405180910390a350505050565b336001600160a01b037f000000000000000000000000000000000000000000000000000000000000000016146104825760405162461bcd60e51b815260040161022790610747565b5f81815260208190526040812060038101549091036104f55760405162461bcd60e51b815260206004820152602960248201527f4d65646963616c4d656d6f727952656769737472793a20756e6b6e6f776e207060448201526832b936b4b9b9b4b7b760b91b6064820152608401610227565b600581015460ff166105595760405162461bcd60e51b815260206004820152602760248201527f4d65646963616c4d656d6f727952656769737472793a20616c726561647920696044820152666e61637469766560c81b6064820152608401610227565b60058101805460ff191690556001810154815460405184907f5b0f25688cdd36bb1f5b201517b6f8bc73b1c597e6c5d335795a482380c4e814905f90a45050565b336001600160a01b037f000000000000000000000000000000000000000000000000000000000000000016146105e25760405162461bcd60e51b815260040161022790610747565b5f838152600160205260409081902082905551829084907fbae975b2ef2b87243c84a4715cf2b6dd1507ce86e7949cd6252c310126a686f5906106289085815260200190565b60405180910390a3505050565b5f81815260208181526040808320815160c0810183528154815260018201549381019390935260028101549183019190915260038101546060830152600481015460808301526005015460ff1615801560a083018190529061069a5750428160800151115b9392505050565b5f805f805f60a086880312156106b5575f80fd5b505083359560208501359550604085013594606081013594506080013592509050565b5f805f80608085870312156106eb575f80fd5b5050823594602084013594506040840135936060013592509050565b5f60208284031215610717575f80fd5b5035919050565b5f805f60608486031215610730575f80fd5b505081359360208301359350604090920135919050565b60208082526025908201527f4d65646963616c4d656d6f727952656769737472793a206e6f7420617574686f6040820152641c9a5e995960da1b60608201526080019056fea264697066735822122033a2e418b3fcaa30e80bc558125b90d72e9ae06d74e729563f438d51607a77ec64736f6c63430008180033"
+}
