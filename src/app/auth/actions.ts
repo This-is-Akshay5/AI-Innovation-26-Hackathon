@@ -73,6 +73,16 @@ export async function signupAction(_prev: ActionResult, formData: FormData): Pro
     authorizationContext: "Account created",
   });
 
+  // With "Confirm email" enabled, signUp() returns a user but no session.
+  // Redirecting would bounce straight back to /login with no explanation,
+  // so say what actually needs to happen instead.
+  if (!data.session) {
+    return {
+      error:
+        "Account created, but it needs email confirmation before you can sign in. Check your inbox, or turn off Authentication -> Sign In / Providers -> Email -> \"Confirm email\" in your Supabase project for demo use.",
+    };
+  }
+
   redirect(role === "doctor" ? "/doctor" : "/patient");
 }
 
@@ -89,6 +99,19 @@ export async function loginAction(_prev: ActionResult, formData: FormData): Prom
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error || !data.user) {
+    // Bad credentials stay deliberately vague so the form can't be used to
+    // enumerate which emails have accounts. Configuration failures are a
+    // different matter — those are ours, not the user's, and hiding them
+    // just sends people hunting for a typo that isn't there.
+    if (error?.code === "email_not_confirmed") {
+      return {
+        error:
+          "This account exists but its email is not confirmed. Confirm it from the signup email, or turn off Authentication -> Sign In / Providers -> Email -> \"Confirm email\" in your Supabase project for demo use.",
+      };
+    }
+    if (error?.status === 0 || /fetch failed|network/i.test(error?.message ?? "")) {
+      return { error: "Could not reach the authentication service. Check NEXT_PUBLIC_SUPABASE_URL and your connection." };
+    }
     return { error: "Invalid email or password." };
   }
 
