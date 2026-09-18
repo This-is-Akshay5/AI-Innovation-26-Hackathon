@@ -40,10 +40,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Environment
+# Environment — real secrets never committed, template always committed
 .env
 .env.local
 .env*.local
+!.env.example
 
 # Contract build output
 contracts/cache/
